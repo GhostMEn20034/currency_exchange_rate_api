@@ -129,7 +129,7 @@ REST_FRAMEWORK = {
 }
 
 SIMPLE_JWT = {
-    'AUTH_HEADER_TYPES': ('JWT', 'Bearer'),
+    'AUTH_HEADER_TYPES': ('Bearer', ),
     'ACCESS_TOKEN_LIFETIME': timedelta(minutes=25),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=3),
     "SIGNING_KEY": os.getenv("JWT_SIGNING_KEY", SECRET_KEY),

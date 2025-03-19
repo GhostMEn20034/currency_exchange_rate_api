@@ -119,6 +119,7 @@ class CurrencyExchangeViewSet(viewsets.ViewSet):
         responses={
             200: OpenApiTypes.OBJECT,
             400: OpenApiTypes.OBJECT,
+            404: OpenApiTypes.OBJECT,
         },
         examples=[
             OpenApiExample(
@@ -165,8 +166,9 @@ class CurrencyExchangeViewSet(viewsets.ViewSet):
                     "detail": "Invalid page."
                 },
                 response_only=True,
-                status_codes=["400"]
-            )
+                status_codes=["404"]
+            ),
+
         ],
     )
     @action(detail=False, methods=['get'])

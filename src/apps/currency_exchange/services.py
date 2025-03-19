@@ -1,4 +1,4 @@
-from datetime import datetime, time
+from datetime import datetime, time, UTC
 from typing import Optional
 import requests
 from django.conf import settings
@@ -27,8 +27,8 @@ def apply_currency_exchange_filters(
         queryset = queryset.filter(currency_code=currency_code)
 
     if date_range:
-        start_datetime = datetime.combine(date_range.start_date, time.min)  # 00:00:00
-        end_datetime = datetime.combine(date_range.end_date, time.max)  # 23:59:59.999999
+        start_datetime = datetime.combine(date_range.start_date, time.min, tzinfo=UTC)  # 00:00:00
+        end_datetime = datetime.combine(date_range.end_date, time.max, tzinfo=UTC)  # 23:59:59.999999
 
         queryset = queryset.filter(created_at__range=[start_datetime, end_datetime])
 

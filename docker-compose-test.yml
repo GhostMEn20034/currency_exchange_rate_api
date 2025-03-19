@@ -4,26 +4,19 @@ services:
     build:
       context: .
       dockerfile: DockerfileLocal
-    container_name: exchange_rate_api
-    command: >
-      sh -c "python manage.py wait_for_db &&
-             python manage.py migrate &&
-             python manage.py runserver 0.0.0.0:8000"
-    volumes:
-      - ./src:/app
-    ports:
-      - "8000:8000"
+    container_name: exchange_rate_api_test
+    command: "python manage.py test -v 2"
     env_file:
-      - .env
+      - .env.test
     depends_on:
       - db
 
-  # Postgres DB
+  # Postgres DB For test environment
   db:
-    container_name: exchange_rate_db
+    container_name: exchange_rate_db_test
     image: postgres:16.4-alpine
     volumes:
-      - exchange_rate_db_volume:/var/lib/postgresql/data/
+      - exchange_rate_db_volume_test:/var/lib/postgresql/data/
       - ./init-database.sh:/docker-entrypoint-initdb.d/init-database.sh
     environment:
       - POSTGRES_PASSWORD=${SUPER_USER_PWD}
@@ -32,4 +25,4 @@ services:
       - SQL_PASSWORD=${SQL_PASSWORD}
 
 volumes:
-  exchange_rate_db_volume:
+  exchange_rate_db_volume_test:

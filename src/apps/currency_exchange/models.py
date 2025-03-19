@@ -11,3 +11,5 @@ class CurrencyExchange(models.Model):
     rate = models.DecimalField(max_digits=10, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True) # Indexed for faster filtering in request history route.
 
+    def __str__(self):
+        return f'Currency exchange from {self.currency_code} to UAH Owner ID - {self.user_id}'

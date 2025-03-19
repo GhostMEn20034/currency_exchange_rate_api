@@ -8,4 +8,9 @@ urlpatterns = [
         CurrencyExchangeViewSet.as_view({'post': 'create_currency_exchange_record'}),
         name='create_currency_exchange_record',
     ),
+    path(
+        'history/',
+        CurrencyExchangeViewSet.as_view({'get': 'history'}),
+        name='history',
+    ),
 ]

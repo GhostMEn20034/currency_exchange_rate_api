@@ -12,7 +12,10 @@ from .serializers import UserBalanceSerializer
     responses={
         200: UserBalanceSerializer,
         401: {"type": "object", "properties": {"detail": {"type": "string"}}},
-        404: {"type": "object", "properties": {"detail": {"type": "string"}}, "example": {"detail": "There's no balance for such user"}},
+        404: {
+            "type": "object", "properties": {"detail": {"type": "string"}},
+            "example": {"detail": "There's no balance for such user"}
+        },
     },
     tags=["Balance"]
 )

@@ -4,7 +4,7 @@ from django.conf import settings
 import requests
 
 
-def get_exchange_rate(currency_code: str) -> Optional[str]:
+def get_exchange_rate(currency_code: str) -> Optional[float]:
     url = f"https://v6.exchangerate-api.com/v6/{settings.EXCHANGE_RATE_API_KEY}/latest/{currency_code}"
     response = requests.get(url)
 
